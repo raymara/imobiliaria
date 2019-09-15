@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+
+
+<head th:fragment="cabecalho">
+  	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Imobiliaria</title>
+    <link rel="icon" th:href="@{/imagens/icone01.png}" href="imagens/icone01.png">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/quadros.css}" href="css/quadros.css">
+    <link rel="stylesheet" th:href="@{/css/sistema.css}" href="css/sistema.css">
+    <link rel="stylesheet" th:href="@{/css/formulario.css}" href="css/formulario.css">
+    <link rel="stylesheet" th:href="@{/css/tipografia.css}" href="css/tipografia.css">
+    <link rel="stylesheet"  th:href="@{/css/font-awesome.min.css}">
+    
+</head>
+
+<body>
+
+	     
+    <nav th:fragment="menu" class="navbar navbar-toggleable-sm navbar-light" style="background-color: #FFCCCC">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        	<span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" th:href="@{/}"></a>
+        <img th:src="@{/imagens/casa1.png}" src="imagens/casa1.png" width="45" height="45" class="d-inline-block align-top" alt="">
+        
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+         <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                    <a th:href="@{/home}"  class="nav-link">Home</a>
+                </li>
+                
+                <li class="nav-item dropdown" >
+                    <a href="#" class="nav-link dropdown-toggle" id="our_services" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Imóvel
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="our_services">
+                        <a th:href="@{/imovel/form}" class="dropdown-item">Cadastrar</a>
+                        <a th:href="@{/imovel/lista}" class="dropdown-item">Listar</a>
+                        <a th:href="@{/imovel/pesquisa}" class="dropdown-item">Consultar</a>
+                    </div>
+                </li>        
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="our_services" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cliente
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="our_services" >
+                        <a th:href="@{/cliente/form}" class="dropdown-item">Cadastrar</a>
+                        <a th:href="@{/cliente/lista}" class="dropdown-item">Listar</a>
+                        <a th:href="@{/cliente/pesquisa}" class="dropdown-item">Consultar</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="our_services" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profissional
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="our_services">
+                        <a th:href="@{/profissional/form}" class="dropdown-item">Cadastrar</a>
+                        <a th:href="@{/profissional/lista}" class="dropdown-item">Consultar</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                    <a href="#" class="nav-link dropdown-toggle" id="our_services" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Serviços
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="our_services">
+                        <a th:href="@{/servico/form}" class="dropdown-item">Cadastrar</a>
+                        <a th:href="@{/servico/lista}" class="dropdown-item">Consultar</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="our_services" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Alugar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="our_services">
+                        <a th:href="@{/locacao/form}" class="dropdown-item">Cadastrar</a>
+                        <a th:href="@{/locacao/lista}" class="dropdown-item">Consultar</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+		  	<li class="pt-2">
+				<a href="#">Seja bem vindo: 
+			    	<span sec:authentication="name"></span>
+			 	</a>
+		  	</li>
+		  	<li>
+				<form class="form-inline my-2 my-md-0" th:action="@{/logout}" method="POST">
+					<button type="submit" class="btn btn-link">
+						<i class="fa fa-window-close-o fa-2x" aria-hidden="true" title="Sair do Sistema"></i>
+					</button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >			
+				</form>
+			</li>
+		</ul>            
+        </div>
+    </nav>
+</body>
+</html>

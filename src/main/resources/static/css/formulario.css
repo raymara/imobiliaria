@@ -1,0 +1,23 @@
+legend {
+	background-color: #d3d3ff;
+	font-size: 1.3rem;
+	padding: 0.2rem;
+    border-radius: 7px;
+    opacity: 0.5;
+}
+
+.entrar {
+    background-color: #35d0e8;
+    color: black;
+    opacity: 0.6;
+    width: 30%;
+}
+
+input:focus, textarea:focus, select:focus {
+    background: #ffffd3;
+}
+
+input[id='usuario'], input[id='senha'] {
+	width: 90%;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragmentos/fragmentos-layout :: cabecalho"></head>
+
+<body>
+    <nav th:replace="fragmentos/fragmentos-layout :: menu"></nav>
+    <main class="quadro1">
+        <section class="quadro2">
+            <div class="quadro3">
+                <h1 class="titulo-inicio">Lista de Serviços Cadastrados</h1>
+                <form>
+                    <fieldset id="campos" class="quadro-campos">
+                     <!--   <div class="form-group row">
+                            <label for="nomeservico" class="col-2 col-form-label">Serviço</label>
+                            <div class="col-md-6">
+                                <input class="form-control" id="nomeservico" type="text" autofocus="autofocus" pattern="[A-Za-z]{3,}">
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary">Consultar</button>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered table-sm">
+                                    <thead>
+                                        <tr class="cabecalho-tabela">
+                                            <th>Imovel</th>
+                                            <th>Profissional</th>
+                                            <th>Valor</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="servico : ${servicos}">
+      										<td th:text="${servico.getImovelNome()}"></td>
+      										<td th:text="${servico.getProfissionallNome()}"></td>
+      										<td th:text="${servico.valor}"></td>
+      										<th><a th:href="@{/servico/edicao/{codigo}(codigo=${servico.codigo})}" class="btn btn-info btn-sm">Editar</a></th>
+    									</tr>                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+    <th:block th:replace="fragmentos/fragmentos-scripts :: bootstrap" ></th:block>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragmentos/fragmentos-layout :: cabecalho"></head>
+
+<body>
+    <nav th:replace="fragmentos/fragmentos-layout :: menu"></nav>
+    <main class="quadro1">
+        <section class="quadro2">
+            <div class="quadro3">
+                <h1 class="titulo-inicio">Cadastro de Servico</h1>
+                <form th:action="@{/servico/salva}" method="POST" th:object="${servico}">
+                    <fieldset class="quadro-campos">
+                    	
+                    	<div th:replace="fragmentos/fragmentos-mensagens :: mensagem-erro"></div>
+                    	
+                    	<input type="hidden"  th:field="*{codigo}"/>        	
+                        
+ 		 <div class="form-group">
+ 				<label for="selectProfissional" class="col-2 col-form-label">Profissional</label>    
+                  <div class="col-md-6 col-sm-10 col-12">
+					<select id="selectProfissional" class="form-control" th:field="*{profissional}" >
+					  <option value="">Selecione um profissional</option>				  
+					  <option th:each="profissional : ${profissionais}" 
+					          th:value="${profissional.codigo}"
+					          th:text="${profissional.nome}"></option>
+					</select>
+				</div>	
+           </div>
+           
+                
+           <div class="form-group">
+ 				<label for="selectImovel" class="col-2 col-form-label">Imóvel</label>    
+	            <div class="col-md-6 col-sm-10 col-12">
+					<select id="selectImovel" class="form-control" th:field="*{imovel}" >
+					  <option value="">Selecione um imovel</option>					  
+					  <option th:each="imovel : ${imoveis}" th:value="${imovel.codigo}" th:text="${imovel.nome}"></option>
+					</select>
+				</div>	
+           	</div>        
+                        
+            <div class="form-group" th:classappend="${#fields.hasErrors('data')} ? has-danger">
+                 <label for="data" class="col-2 col-form-label">Data</label>
+                 <div class="col-md-3 col-sm-6 col-12">
+                 <input class="form-control" type="text" id="data" th:field="${servico.data}">
+                 </div>
+            </div>
+              
+                <div class="form-group" >
+              	  <label for="valor" class="col-2 col-form-label">Valor total</label>
+              	  <div class="col-md-3 col-sm-6 col-12">
+                   <input class="form-control moeda-js" type="text" id="valor" th:field="${servico.valor}">
+              </div>
+              </div>
+                        
+         <div class="form-group" >
+              <label for="observacao" class="col-3 col-form-label">Observação</label>
+              <div class="col-md-6 col-sm-10 col-12">
+              <input class="form-control" type="text" id="observacao" th:field="${servico.observacao}">
+        </div>
+          </div>
+                       
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+    <th:block th:replace="fragmentos/fragmentos-scripts :: bootstrap" ></th:block>
+</body>
+
+</html>

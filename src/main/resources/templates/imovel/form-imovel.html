@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragmentos/fragmentos-layout :: cabecalho"></head>
+
+<body>
+    <nav th:replace="fragmentos/fragmentos-layout :: menu"></nav>
+    <main class="quadro1">
+        <section class="quadro2">
+            <div class="quadro3">
+                <h1 class="titulo-inicio">Cadastro de Imóvel</h1>
+                <form th:action="@{/imovel/salva}" method="POST" th:object="${imovel}">
+                    <fieldset class="quadro-campos">
+                    	
+                    	<div th:replace="fragmentos/fragmentos-mensagens :: mensagem-erro"></div>
+                    	
+                    	<input type="hidden"  th:field="*{codigo}"/>
+                    	
+                    	 <div class="form-group" th:classappend="${#fields.hasErrors('cliente')} ? has-danger">
+ 				<label for="selectCliente" class="col-2 col-form-label">Cliente</label>    
+                  <div class="col-md-6 col-sm-10 col-12">
+					<select id="selectCliente" class="form-control" th:field="*{cliente}" >
+					  <option value="">Selecione um cliente</option>				  
+					  <option th:each="cliente : ${clientes}" 
+					          th:value="${cliente.codigo}"
+					          th:text="${cliente.nome}"></option>
+					</select>
+				</div>	
+           </div>
+                
+           <div class="form-group" th:classappend="${#fields.hasErrors('tipoimovel')} ? has-danger">
+ 				<label for="selectTipoImovel" class="col-3 col-form-label">Tipo do Imóvel</label>    
+	            <div class="col-md-6 col-sm-10 col-12">
+					<select id="selectTipoImovel" class="form-control" th:field="*{tipoimovel}" >
+					  <option value="">Selecione um imovel</option>					  
+					  <option th:each="tipoimovel : ${tipoimoveis}" th:value="${tipoimovel.codigo}" th:text="${tipoimovel.descricao}"></option>
+					</select>
+				</div>	
+           	</div>  
+                    	
+                    	
+                        <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-danger">
+                            <label for="nome" class="col-3 col-form-label">Nome do Imóvel</label>
+                            <div class="col-md-6 col-sm-10 col-12">
+                                <input class="form-control" type="text" id="nome" th:field="${imovel.nome}" autofocus="autofocus" placeholder="Nome do imóvel">
+                            </div>
+                        </div>
+                          <div class="form-group" th:classappend="${#fields.hasErrors('endereco')} ? has-danger">
+                            <label for="endereco" class="col-2 col-form-label">Endereço</label>
+                            <div class="col-md-6 col-sm-10 col-12">
+                                <input class="form-control" type="text" id="endereco" th:field="${imovel.endereco}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bairro" class="col-2 col-form-label">Bairro</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="text" id="bairro" th:field="${imovel.bairro}">
+                            </div>                            
+                        </div>
+                        <div class="form-group" >
+                            <label for="cep" class="col-2 col-form-label">CEP</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="number" id="cep" th:field="${imovel.cep}">
+                            </div>
+                        </div>
+                   
+                        <div class="form-group" >
+                            <label for="referenca" class="col-3 col-form-label">Ponto de referência</label>
+                            <div class="col-md-6 col-sm-10 col-12">
+                                <input class="form-control" type="text" id="referencia" th:field="${imovel.referencia}">
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label for="metragem" class="col-2 col-form-label">Metragem</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="text" id="metragem" th:field="${imovel.metragem}">
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="dormitorio" class="col-2 col-form-label">Dormitório</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="number" id="dormitorio" th:field="${imovel.dormitorio}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="banheiro" class="col-2 col-form-label">Banheiro</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="number" id="banheiro" th:field="${imovel.banheiro}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" >
+                            <label for="suite" class="col-2 col-form-label">Suite</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="number" id="suite" th:field="${imovel.suite}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" >
+                            <label for="vaga_garagem" class="col-3 col-form-label">Vaga Garagem</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control" type="number" id="vaga_garagem" th:field="${imovel.vaga_garagem}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="valoraluguel" class="col-2 col-form-label">Valor Aluguel</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control moeda-js" type="text" id="valoraluguel" th:field="${imovel.valoraluguel}">
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="valor_iptu" class="col-2 col-form-label">Valor IPTU</label>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <input class="form-control moeda-js" type="text" id="valoriptu" th:field="${imovel.valoriptu}">
+                            </div>
+                        </div>                        
+             
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+    <th:block th:replace="fragmentos/fragmentos-scripts :: bootstrap" ></th:block>
+</body>
+
+</html>

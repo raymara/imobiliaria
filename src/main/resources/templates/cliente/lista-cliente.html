@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragmentos/fragmentos-layout :: cabecalho"></head>
+
+<body>
+    <nav th:replace="fragmentos/fragmentos-layout :: menu"></nav>
+    <main class="quadro1">
+        <section class="quadro2">
+            <div class="quadro3">
+                <h1 class="titulo-inicio">Lista de Clientes Cadastrados</h1>
+                <form>
+                    <fieldset id="campos" class="quadro-campos">
+                       
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered table-sm">
+                                    <thead>
+                                        <tr class="cabecalho-tabela">
+                                            <th>Nome</th>
+                                            <th>Telefone</th>
+                                            <th>Endereço</th>
+                                            <th>CPF</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cliente : ${clientes}">
+      										<td th:text="${cliente.nome}"></td>
+      										<td th:text="${cliente.telefone}"></td>
+      										<td th:text="${cliente.endereco}"></td>
+      										<td th:text="${cliente.cpf}"></td>
+      										<th><a th:href="@{/cliente/edicao/{codigo}(codigo=${cliente.codigo})}" class="btn btn-info btn-sm">Editar</a></th>
+    									</tr>                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+    <th:block th:replace="fragmentos/fragmentos-scripts :: bootstrap" ></th:block>
+</body>
+</html>
